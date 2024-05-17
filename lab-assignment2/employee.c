@@ -55,7 +55,7 @@ int main()
     // Add your code here
 
     int n; 
-    printf("Enter the numbers of employees: ");
+    printf("Enter the numbers of employees: \n");
     scanf("%d", &n);
 
     employee_t* employees = (employee_t*)malloc(n*sizeof(employee_t));
