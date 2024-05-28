@@ -35,14 +35,56 @@ int peek(int *arr)
 void enqueue(int data, int *arr)
 {
     //insert your code here
+    if(isfull()){
+        printf("Queue is full\n");
+        return;
+    }
 
- 
+    // if(rear == -1 && front == -1){
+    //     front = rear = 0;
+    //     arr[rear] = data;
+    // }else{
+    //     rear++;
+    //     arr[rear] = data;
+    // }
+    // if (front == -1)
+    //     front = 0;
+    // rear++;
+    // arr[rear] = data;
+
+    if(isempty()){
+        front += 1;
+        rear += 1;
+        arr[rear] = arr[front] = data;
+    }else{
+        rear++;
+        arr[rear] = data;
+    }
+    
 }
 
 /*----Function to remove the elements from the queue----*/
 int dequeue(int *arr)
 {   
     //insert your code here
+    if(isempty()){
+        printf("Queue is empty\n");
+        return -1;
+    }
+
+    int data = arr[front];
+
+    if (front == rear)
+    {
+        front = -1;
+        rear = -1;
+    }else{
+        for(int i = 0; i < rear; i++){
+            arr[i] = arr[i + 1];
+        }
+        rear--;
+    }
+    return data;
 
 }
 
@@ -57,10 +99,10 @@ void display(int *arr)
     }
     else {
         
-        for(i=front+1; i<=rear; i++)
+        for(i=front; i<=rear; i++)
         {
-            printf("%d ",arr[i]);
-        }
+            printf("Enqueue data is: %d\n",arr[i]);
+        }   
 
     }
     printf("\n");
