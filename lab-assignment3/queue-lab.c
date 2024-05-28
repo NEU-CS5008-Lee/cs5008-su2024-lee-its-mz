@@ -40,18 +40,6 @@ void enqueue(int data, int *arr)
         return;
     }
 
-    // if(rear == -1 && front == -1){
-    //     front = rear = 0;
-    //     arr[rear] = data;
-    // }else{
-    //     rear++;
-    //     arr[rear] = data;
-    // }
-    // if (front == -1)
-    //     front = 0;
-    // rear++;
-    // arr[rear] = data;
-
     if(isempty()){
         front += 1;
         rear += 1;
