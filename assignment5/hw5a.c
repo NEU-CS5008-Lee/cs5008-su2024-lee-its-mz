@@ -40,8 +40,35 @@ void mergeIt(
   
 
   // ADD YOUR CODE HERE
+  int size = rightStop - leftStart + 1;
+  char* tempP = (char*)malloc(size * sizeof(char));
+  int left = leftStart;
+  int right = rightStart;
+  int idx = 0;
+
+  while(left <= leftStop && right <= rightStop){
+    if(data[left] <= data[right]){
+      tempP[idx++] = data[left++];
+    }else{
+      tempP[idx++] = data[right++];
+    }
+  }
+
+  while(left <= leftStop){
+    tempP[idx++] = data[left++];
+  }
+
+  while(right <= rightStop){
+    tempP[idx++] = data[right++];
+  }
+
+  for(idx = 0; idx < size; idx++){
+    data[leftStart + idx] = tempP[idx];
+  }
+
+  free(tempP);
   
-  return;
+  //return;
 }
 
 

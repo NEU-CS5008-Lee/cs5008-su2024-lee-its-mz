@@ -31,12 +31,35 @@ char upperChar(char c){
   }
 }
 
+int getPivot(char* data, int left, int right){
+  int i = left - 1;
+  int pivot_val = data[right];
+  int temp;
 
+  for(int j = left; j < right; j++){
+    if(data[j] <= pivot_val){
+      temp = data[++i];
+      data[i] = data[j];
+      data[j] = temp;
+    }
+  }
+
+  temp = data[i+1];
+  data[i+1] = data[right];
+  data[right] = temp;
+
+  return i+1;
+}
 
 // pick pivot and then sort small and big parts 
 void quicky(char* data, int left, int right) {
 
   // ADD YOUR CODE HERE
+  if(left < right){
+    int pivot = getPivot(data, left, right);
+    quicky(data, left, pivot-1);
+    quicky(data, pivot+1, right);
+  }
 
   return;
 }
