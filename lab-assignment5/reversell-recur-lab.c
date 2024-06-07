@@ -1,4 +1,6 @@
-//enter your name and email here
+// Mingzhe Ou
+// ou.mi@northeastern.edu
+
 #include<stdio.h>
 #include<stdlib.h>
 typedef struct node
