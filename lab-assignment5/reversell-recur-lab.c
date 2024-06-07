@@ -14,16 +14,34 @@ typedef struct list{
 /*-----creating the nodes----------*/
 node_t* newNode(int num)
 {
- 
+    node_t* newNode = (node_t*)malloc(sizeof(node_t));
+    if(newNode == NULL) exit(1);
+
+    newNode->data = num;
+    newNode->next = NULL;
+    return newNode;
 }
 /*---creating linked list----*/
 List* init_LL(){
-    
+    List* l = (List*)malloc(sizeof(List));
+    if(l == NULL) exit(1);
+
+    l->head = NULL;
+    return l;
 }
 
 /*---Insert the nodes at the begining of the list---*/
 void insertFirst(List* l, int data){
-    
+    node_t* node = newNode(data);
+
+    if(l->head == NULL){
+        l->head = node;
+        return;
+    }
+
+    node->next = l->head;
+    l->head = node;
+    return;
 
 }
 
@@ -43,13 +61,18 @@ void display(List* l)
 /*-------reversing the linked list using recursion------*/
 void reverse(List* l, node_t* ptr)
 {
-    
-    
-    
-    
-//insert your code here
-    
-    
+    if(ptr == NULL) return;
+
+    if(ptr->next == NULL){
+        l->head = ptr;
+        return;
+    }
+
+    reverse(l, ptr->next);
+
+    node_t* temp = ptr->next;
+    temp->next = ptr;
+    ptr->next = NULL;
 }
 
 /*----Free the nodes-----*/
