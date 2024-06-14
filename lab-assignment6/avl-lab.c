@@ -1,5 +1,5 @@
-/**/
-/*---enter your email here-----*/
+// Name: Mingzhe Ou
+// E-mail: ou.mi@northeastern.edu
 
 #include<stdio.h>
 #include<stdlib.h>
