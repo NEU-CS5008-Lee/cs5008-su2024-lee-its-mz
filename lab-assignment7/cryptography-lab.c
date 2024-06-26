@@ -1,5 +1,5 @@
-//enter your name here
-//enter your email here
+//Mingzhe Ou
+//ou.mi@northeastern.edu
 
 #include <stdio.h>
 #include <string.h>
@@ -9,6 +9,17 @@
 void encrypt(char text[], int key)
 {
     // Add your code here
+    char ch;
+    for(int i = 0; text[i] != '\0'; i++){
+        ch = text[i];
+        if(isalpha(ch)){
+            if(isupper(ch)){
+                text[i] = ((ch - 'A' + key) % 26) + 'A';
+            }else{
+                text[i] = ((ch - 'a' + key) % 26) + 'a';
+            }
+        }
+    }
 }
 
 /*function to decrypt the data*/
@@ -16,7 +27,17 @@ void decrypt(char text[],int key)
 {
     
     // Add your code here
-    
+    char ch;
+    for(int i = 0; text[i] != '\0'; i++){
+        ch = text[i];
+        if(isalpha(ch)){
+            if(isupper(ch)){
+                text[i] = ((ch - 'A' - key) % 26) + 'A';
+            }else{
+                text[i] = ((ch - 'a' - key) % 26) + 'a';
+            }
+        }
+    }
 }
 
 
