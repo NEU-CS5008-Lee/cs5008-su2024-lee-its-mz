@@ -1,5 +1,5 @@
-//enter your email here
-//enter your name here
+//ou.mi@northeastern.edu
+//Mingzhe Ou
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -59,7 +59,7 @@ int numberoflistspresent(Graph* graph)
 int search(char* name, Graph* graph)
 {
     int i;
-    for(i=0;i<numberOfListspresent(graph);i++){
+    for(i=0;i<numberoflistspresent(graph);i++){
         if(strcmp(graph->adjLists[i]->name,name)==0){
             return i;    //position of person in the list
         }
@@ -73,13 +73,27 @@ void addConnection(Graph* graph, char* person, char* friend){
     int p = search(person, graph);//search for the person in the graph,index or position
     int n=numberoflistspresent(graph);
     
-    
-    
-    //insert your code here
-    
-    
-    
-    
+    if(p == -1){
+        p = n;
+        graph->adjLists[p] = createNode(person);
+        n++;
+    }
+
+    int f = search(friend, graph);
+
+    if(f == -1){
+        f = n;
+        graph->adjLists[f] = createNode(friend);
+        n++;
+    }
+
+    node* newNode = createNode(friend);
+    newNode->next = graph->adjLists[p]->next;
+    graph->adjLists[p]->next = newNode;
+
+    newNode = createNode(person);
+    newNode->next = graph->adjLists[f]->next;
+    graph->adjLists[f]->next = newNode;
     
 }
 
