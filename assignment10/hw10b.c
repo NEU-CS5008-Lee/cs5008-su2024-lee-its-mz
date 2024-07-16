@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Mingzhe Ou
+// email: ou.mi@northeastern.edu
 
 #include <stdio.h>
 #include <stdlib.h> 		// for qsrot
@@ -103,6 +103,20 @@ int kruskal(Fedge e[],int n) {
    qsort(e, edge_num, sizeof(Fedge), compare); // sort edges using qsort
 
    // Add Your code here
+   for(i = 0; i < n; i++){
+    make_set(i);
+   }
+
+   for(i = 0; i < edge_num && mst_e_n < n - 1; i++){
+    u = find_set(e[i].u);
+    v = find_set(e[i].v);
+
+    if(u != v){
+        union_set(u, v);
+        mst_e += e[i].key;
+        mst_e_n++;
+    }
+   }
 
    return mst_e; 
 }
@@ -125,6 +139,16 @@ int main() {
     int i,j;
 
     // Add your code here to create edge_set
+    for(i = 0; i < VSIZE; i++){
+        for(j = i + 1; j < VSIZE; j++){
+            if(graph[i][j] != INF){
+                edge_set[edge_num].key = graph[i][j];
+                edge_set[edge_num].u = i;
+                edge_set[edge_num].v = j;
+                edge_num++;
+            }
+        }
+    }
 
     mst=kruskal(edge_set, VSIZE); 
     printf("Min cost is %d.\n", mst);
