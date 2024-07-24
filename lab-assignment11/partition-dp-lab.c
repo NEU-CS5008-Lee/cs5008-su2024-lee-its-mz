@@ -81,12 +81,20 @@ void partition(int s[], int n, int k)
     
     /* 2 to k partitions*/
 
-
+    for (j = 2; j <= k; j++) {
+        for (i = 2; i <= n; i++) {
+            m[i][j] = MAXINT;
+            for (x = 1; x < i; x++) {
+                cost = max(m[x][j - 1], p[i] - p[x]);
+                if (m[i][j] > cost) {
+                    m[i][j] = cost;
+                    d[i][j] = x;
+                }
+            }
+        }
+    }
 
     /* Add your code here */
-
-
-
     print_matrix(m,n,k);
     printf("Partition of the books are:\n");
     reconstruct_partition(s,d,n,k);        /* print book partition */
