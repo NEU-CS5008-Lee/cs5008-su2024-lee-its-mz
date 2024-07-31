@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Mingzhe Ou
+// email: mi.ou@northeastern.edu
 // Compile with:
 //
 // gcc -lpthread hw12.c -o hw12
@@ -23,16 +23,22 @@ void* thread1 (void* vargp) {
 void* thread2 (void* vargp) {
   // add 5 to counter
   // *** YOUR CODE GOES HERE ***
+  counter = counter + 5;
+  return NULL;
 }
 
 void* thread3 (void* vargp) {
   // subtract 2 from counter
   // *** YOUR CODE GOES HERE ***
+  counter = counter - 2;
+  return NULL;
 }
 
 void* thread4 (void* vargp) {
   // subtract 10 from counter
   // *** YOUR CODE GOES HERE ***
+  counter = counter - 10;
+  return NULL;
 }
 
 int main() {
@@ -46,6 +52,9 @@ int main() {
   for (i=0; i < NTHREADS; ++i){
     pthread_create(&(tid[i]), NULL, thread1, NULL);
     // *** YOUR CODE GOES HERE ***
+    pthread_create(&tid[NTHREADS + i], NULL, thread2, NULL);
+    pthread_create(&tid[2 * NTHREADS + i], NULL, thread3, NULL);
+    pthread_create(&tid[3 * NTHREADS + i], NULL, thread4, NULL);
   }
 
   //wait until all threads are done
