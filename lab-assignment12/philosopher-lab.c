@@ -1,9 +1,11 @@
-//Enter your name here
-//Enter your email here
+// Mingzhe Ou
+// mi.ou@northeastern.edu
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
 pthread_mutex_t chopstick[5];//lock variable
+
+//gcc -o philosopher philosopher-lab.c -lpthread
 
 // Thread to be executed
 void *philosopher(void *x)
@@ -13,7 +15,25 @@ void *philosopher(void *x)
     int n=*a;
     
     /*-----Insert your code here----*/
-    
+    int cycles = 5; 
+
+    for (int i = 0; i < cycles; i++) {
+        printf("Philosopher %d is thinking.\n", n + 1);
+        sleep(1); 
+
+        pthread_mutex_lock(&chopstick[n]);
+        pthread_mutex_lock(&chopstick[(n + 1) % 5]);
+
+        printf("Philosopher %d is eating using chopstick[%d] and chopstick[%d].\n", n + 1, n, (n + 1) % 5);
+        sleep(1); 
+
+        pthread_mutex_unlock(&chopstick[n]);
+        pthread_mutex_unlock(&chopstick[(n + 1) % 5]);
+
+        printf("Philosopher %d finished eating.\n", n + 1);
+    }
+
+    return NULL;
     
 }
 
